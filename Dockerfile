@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 3333
 
-CMD ["node", "ace.js", "serve", "--watch"]
+CMD ["node", "ace", "serve", "--watch"]
