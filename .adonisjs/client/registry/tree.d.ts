@@ -7,4 +7,7 @@ export interface ApiDefinition {
       login: typeof routes['auth.auth.login']
     }
   }
+  users: {
+    create: typeof routes['users.create']
+  }
 }
