@@ -12,6 +12,9 @@ export default class Product extends ProductSchema {
     @column()
     declare amount: number
 
+    @column()
+    declare deleted: boolean
+
     @column.dateTime({ autoCreate: true })
     declare createdAt: DateTime
 
