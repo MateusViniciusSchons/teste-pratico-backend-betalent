@@ -110,7 +110,7 @@ export class TransactionSchema extends BaseModel {
   @column()
   declare externalId: string
   @column()
-  declare gateway: string
+  declare gateway: number
   @column({ isPrimary: true })
   declare id: number
   @column()
