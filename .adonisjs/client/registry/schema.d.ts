@@ -43,6 +43,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'users.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/users/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'users.update': {
     methods: ["PUT"]
     pattern: '/api/v1/users/:id'
