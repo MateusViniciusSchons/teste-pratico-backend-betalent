@@ -29,6 +29,9 @@ export default class User extends compose(UserSchema, AuthFinder) {
     @column()
     declare role: string
 
+    @column()
+    declare deleted: boolean
+
     @column.dateTime({ autoCreate: true })
     declare createdAt: DateTime
 

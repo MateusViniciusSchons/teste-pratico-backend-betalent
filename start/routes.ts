@@ -26,7 +26,10 @@ router
 
     router
       .group(() => {
-        router.post('/users', [UsersController, 'create']).use(middleware.role(['admin']))
+        router.post('users', [UsersController, 'create']).use(middleware.role(['admin']))
+        router.get('users', [UsersController, 'index']).use(middleware.role(['admin']))
+        router.put('users/:id', [UsersController, 'update']).use(middleware.role(['admin']))
+        router.delete('users/:id', [UsersController, 'delete']).use(middleware.role(['admin']))
       })
       .use(middleware.auth())
   })

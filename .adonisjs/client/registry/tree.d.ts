@@ -9,5 +9,8 @@ export interface ApiDefinition {
   }
   users: {
     create: typeof routes['users.create']
+    index: typeof routes['users.index']
+    update: typeof routes['users.update']
+    delete: typeof routes['users.delete']
   }
 }
