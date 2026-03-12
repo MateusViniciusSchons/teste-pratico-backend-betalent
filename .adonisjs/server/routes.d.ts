@@ -15,6 +15,7 @@ export type ScannedRoutes = {
     'products.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'products.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'products.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'clients.index': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'auth.auth.login': { paramsTuple?: []; params?: {} }
@@ -26,12 +27,14 @@ export type ScannedRoutes = {
     'users.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'products.index': { paramsTuple?: []; params?: {} }
     'products.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'clients.index': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'users.index': { paramsTuple?: []; params?: {} }
     'users.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'products.index': { paramsTuple?: []; params?: {} }
     'products.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'clients.index': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

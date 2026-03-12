@@ -21,4 +21,7 @@ export interface ApiDefinition {
     update: typeof routes['products.update']
     delete: typeof routes['products.delete']
   }
+  clients: {
+    index: typeof routes['clients.index']
+  }
 }

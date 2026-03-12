@@ -1,3 +1,4 @@
+import ClientsController from '#controllers/clients_controller'
 import ProductsController from '#controllers/products_controller'
 import UsersController from '#controllers/users_controller'
 import { middleware } from '#start/kernel'
@@ -30,6 +31,9 @@ router
         router.get('products/:id', [ProductsController, 'show']).use(middleware.role(['admin', 'manager']))
         router.put('products/:id', [ProductsController, 'update']).use(middleware.role(['admin', 'manager']))
         router.delete('products/:id', [ProductsController, 'delete']).use(middleware.role(['admin', 'manager']))
+
+        //Clients
+        router.get('clients', [ClientsController, 'index']).use(middleware.role(['admin', 'manager', 'user']))
       })
       .use(middleware.auth())
   })

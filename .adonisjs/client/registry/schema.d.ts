@@ -139,4 +139,16 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'clients.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/clients'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
 }

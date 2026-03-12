@@ -7,4 +7,5 @@ export const controllers = {
   Auth: () => import('#controllers/auth_controller'),
   Users: () => import('#controllers/users_controller'),
   Products: () => import('#controllers/products_controller'),
+  Clients: () => import('#controllers/clients_controller'),
 }
