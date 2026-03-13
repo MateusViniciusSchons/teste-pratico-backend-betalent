@@ -1,4 +1,3 @@
-import User from '#models/user'
 import { BASE_URL } from '#tests/helpers/credentials'
 import { createUser, deleteUser } from '#tests/helpers/factories'
 import { getAdminToken, getUserToken } from '#tests/helpers/getTokens'
