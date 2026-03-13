@@ -1,12 +1,9 @@
-import { BASE_URL } from '#tests/helpers/credentials'
+import { ADMIN_CREDENTIALS, BASE_URL } from '#tests/helpers/credentials'
 import { test } from '@japa/runner'
 
 test.group('Auth', (group) => {
   test('Login com credenciais válidas retorna token', async ({ client, assert }) => {
-    const response = await client.post(BASE_URL+'/auth/login').json({
-      email: "admin@betalent.com",
-      password: "mecontrata",
-    })
+    const response = await client.post(BASE_URL+'/auth/login').json(ADMIN_CREDENTIALS)
 
     const body = response.body() as { token: string, user: object }
 
