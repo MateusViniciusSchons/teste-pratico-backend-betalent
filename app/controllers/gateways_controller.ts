@@ -1,4 +1,5 @@
 import Gateway from '#models/gateway'
+import { PatchGatewayValidator } from '#validators/gateway.validator'
 import { idParamValidator } from '#validators/id_param.validator'
 import type { HttpContext } from '@adonisjs/core/http'
 import vine from '@vinejs/vine'
@@ -16,7 +17,7 @@ export default class GatewaysController {
             schema: idParamValidator,
             data: request.params(),
         })
-        const { isActive, priority } = request.only(['isActive', 'priority'])
+        const { isActive, priority } = await request.validateUsing(PatchGatewayValidator)
 
         const gateway = await Gateway.findOrFail(id)
 
