@@ -20,8 +20,8 @@ Este projeto foi desenvolvido como parte do teste prático para a **BeTalent Tec
 
 ### 1. Clonar o Repositório
 ```bash
-git clone [https://github.com/](https://github.com/)[seu-usuario]/[nome-do-repo].git
-cd [nome-do-repo]
+git clone [[https://github.com/](https://github.com/)[seu-usuario]/[nome-do-repo].git](https://github.com/MateusViniciusSchons/teste-pratico-backend-betalent.git)
+cd teste-pratico-backend-betalent
 ```
 
 ### 2. Configurar Variáveis de Ambiente
@@ -52,7 +52,7 @@ Aqui está o bloco de código Markdown contendo apenas a seção de rotas, estru
 Markdown
 
 ## 🚦 Rotas da API
-
+Todas as rotas possuem prefixo `/api/v1`
 ### 🔓 Públicas
 * **POST** `/login` - Realizar o login e obter token de acesso.
 * **POST** `/checkout` - Realizar uma compra informando múltiplos produtos e dados do cartão.
@@ -70,29 +70,240 @@ Markdown
 | **CRUD** | `/users` | Gerenciamento completo de usuários. | `ADMIN` |
 
 ## 🛣️ Detalhamento das Rotas
+Com prefixo `/api/v1`.
 
-### 💳 Pagamentos (Checkout)
-**POST** `/checkout`
-Realiza a compra processando o pagamento através da lógica de multi-gateway.
-- **Payload:**
+### Login
+
+**POST** `/auth/login`
+
+Autentica um usuário no sistema.
+
+#### Body
+
 ```json
 {
+  "email": "string",
+  "password": "string"
+}
+```
+
+#### Response
+
+```json
+{
+  "user": {
+    "id": "number"
+    "email": "string",
+    "role": "string"
+  },
+  "token": "string"
+}
+```
+
+### Realizar uma Compra
+
+**POST** `/transactions`
+
+Realiza uma compra criando um usuário, caso ele ainda não exista.
+
+#### Body
+
+```json
+{
+  "clientName": "string",
+  "clientEmail": "string",
   "products": [
-    { "id": 1, "quantity": 2 },
-    { "id": 3, "quantity": 1 }
+    {
+      "id": "number",
+      "quantity": "20000" // Valor em centavos
+    }
   ],
-  "card": {
-    "name": "Nome do Titular",
-    "number": "5569000000006063",
-    "cvv": "010",
-    "expiry": "12/28"
+  "cardNumber": "string",
+  "cvv": "string"
+}
+```
+
+#### Response
+
+```json
+{
+  "message": "string",
+  "transaction": {
+    "id": "number",
+    "externalId": "number",
+    "gatewayId": "number",
+    "status": "string",
+    "amount": "number", // Em centavos
+    "cardLastNumbers": "string",
+    "clientId": "number"
+  },
+  "token": "string"
+}
+```
+
+### Rotas Autenticadas
+```markdown
+
+prescisam de header `"Authorization": "Bearer {token}"`
+```
+
+### Criar Usuário
+
+**POST** `/users`
+
+Cria um usuário
+
+#### Body
+
+```json
+{
+  "email": "string",
+  "password": "string",
+  "role": "string"
+}
+```
+
+#### Response
+
+```json
+{
+  "user": {
+    "id": "number",
+    "email": "string",
+    "role": "string"
   }
 }
 ```
 
-## 🧪 Testes Automatizados (TDD)
+### Listar Usuários
 
-O projeto foi desenvolvido seguindo os princípios de **TDD (Test Driven Development)**, garantindo que as regras de negócio, como a alternância entre gateways (fallback) e as permissões de acesso (RBAC), estejam protegidas contra regressões.
+**GET** `/users`
+
+Lista usuários
+
+#### Response
+
+```json
+{
+  "users": [
+  {
+    "id": "number",
+    "email": "string",
+    "role": "string"
+  }]
+}
+```
+
+### Detalhar Usuário
+
+**GET** `/users/:id`
+
+Detalha usuário
+
+#### Response
+
+```json
+{
+  "user": {
+    "id": "number",
+    "email": "string",
+    "role": "string"
+  }
+}
+```
+
+### Atualizar Usuário
+
+**PUT** `/users/:id`
+
+Atualiza um usuário
+
+#### Body
+
+```json
+{
+  "email": "string",
+  "password": "string",
+  "role": "string"
+}
+```
+
+#### Response
+
+```json
+{
+  "user": {
+    "id": "number",
+    "email": "string",
+    "role": "string"
+  }
+}
+```
+
+### Deletar Usuário
+
+**DELETE** `/users/:id`
+
+Deleta usuário
+
+#### Response
+
+```json
+status: 204 (No Content)
+```
+
+### Criar Produto
+
+**POST** `/products`
+
+Cria um produto
+
+#### Body
+
+```json
+{
+  "name": "string",
+  "amount": "number",
+}
+```
+
+#### Response
+
+```json
+{
+  "product": {
+    "id": "number",
+    "email": "string",
+    "amount": "number"
+  }
+}
+```
+
+### Listar Produtos
+
+### Detalhar Produto
+
+### Atualizar Produto
+
+### Deletar Produto
+
+### Listar Clientes
+
+### Detalhar Cliente E Suas Compras
+
+### Listar Compras
+
+### Detalhar uma Compra
+
+### Estornar uma Compra
+
+### Listar Gateways
+
+### Atualizar Parcialmente um Gateway
+
+
+
+## 🧪 Testes Automatizados (TDD)
 
 ### Rodando os Testes
 Para executar a suíte de testes completa dentro do container Docker, utilize:
