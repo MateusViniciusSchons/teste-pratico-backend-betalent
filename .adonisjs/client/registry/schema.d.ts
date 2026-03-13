@@ -223,4 +223,16 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'transactions.charge_back': {
+    methods: ["POST"]
+    pattern: '/api/v1/transactions/:id/chargeback'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
 }

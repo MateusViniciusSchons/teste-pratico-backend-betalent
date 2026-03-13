@@ -45,6 +45,7 @@ router
         //Gateways
         router.get('gateways', [GatewaysController, 'index']).use(middleware.role(['admin']))
         router.patch('gateways/:id', [GatewaysController, 'updatePatch']).use(middleware.role(['admin']))
+        router.post('transactions/:id/chargeback', [TransactionsController, 'chargeBack']).use(middleware.role(['admin', 'manager']))
 
         
       })

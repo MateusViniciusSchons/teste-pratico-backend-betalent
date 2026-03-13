@@ -114,6 +114,12 @@ const routes = {
     tokens: [{"old":"/api/v1/gateways/:id","type":0,"val":"api","end":""},{"old":"/api/v1/gateways/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/gateways/:id","type":0,"val":"gateways","end":""},{"old":"/api/v1/gateways/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['gateways.update_patch']['types'],
   },
+  'transactions.charge_back': {
+    methods: ["POST"],
+    pattern: '/api/v1/transactions/:id/chargeback',
+    tokens: [{"old":"/api/v1/transactions/:id/chargeback","type":0,"val":"api","end":""},{"old":"/api/v1/transactions/:id/chargeback","type":0,"val":"v1","end":""},{"old":"/api/v1/transactions/:id/chargeback","type":0,"val":"transactions","end":""},{"old":"/api/v1/transactions/:id/chargeback","type":1,"val":"id","end":""},{"old":"/api/v1/transactions/:id/chargeback","type":0,"val":"chargeback","end":""}],
+    types: placeholder as Registry['transactions.charge_back']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

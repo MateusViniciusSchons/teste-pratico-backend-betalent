@@ -22,12 +22,14 @@ export type ScannedRoutes = {
     'transactions.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'gateways.index': { paramsTuple?: []; params?: {} }
     'gateways.update_patch': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'transactions.charge_back': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.login': { paramsTuple?: []; params?: {} }
     'transactions.create': { paramsTuple?: []; params?: {} }
     'users.create': { paramsTuple?: []; params?: {} }
     'products.create': { paramsTuple?: []; params?: {} }
+    'transactions.charge_back': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'users.index': { paramsTuple?: []; params?: {} }

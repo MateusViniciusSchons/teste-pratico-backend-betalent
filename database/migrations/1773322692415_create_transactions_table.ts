@@ -11,7 +11,7 @@ export default class extends BaseSchema {
       table.integer('gateway_id').unsigned().nullable()
       table.foreign('gateway_id').references('id').inTable('gateways').onDelete('CASCADE')
       table.string('external_id').nullable()
-      table.enum('status', ['pending', 'paid', 'failed']).notNullable().defaultTo('pending')
+      table.enum('status', ['pending', 'paid', 'failed', 'charged_back']).notNullable().defaultTo('pending')
       table.integer('amount').unsigned().notNullable()
       table.string('card_last_numbers', 4).notNullable()
 

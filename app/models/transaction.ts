@@ -3,6 +3,7 @@ import { DateTime } from 'luxon'
 import Client from './client.ts'
 import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import TransactionProduct from './transaction_product.ts'
+import Gateway from './gateway.ts'
 
 export default class Transaction extends BaseModel {
     @column({ isPrimary: true })
@@ -25,6 +26,9 @@ export default class Transaction extends BaseModel {
     
     @column()
     declare gatewayId: number
+    
+    @belongsTo(() => Gateway)
+    declare gateway: BelongsTo<typeof Gateway>
     
     @column()
     declare status: string

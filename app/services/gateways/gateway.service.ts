@@ -24,6 +24,10 @@ export class GatewayService {
 
         const chargeBackResponse = await gateway.chargeBack(externalId);
 
-        return chargeBackResponse;
+        if(!chargeBackResponse) {
+            throw new Error('Charge back failed.');
+        }
+
+        return true;
     }
 }

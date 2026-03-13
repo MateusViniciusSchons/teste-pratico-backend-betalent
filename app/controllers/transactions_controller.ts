@@ -67,8 +67,6 @@ export default class TransactionsController {
                     cvv: cvv
                 })
 
-                console.log(paymentResponse)
-
                 if(paymentResponse.id) {
                     
                     await transaction.merge({
@@ -126,4 +124,25 @@ export default class TransactionsController {
 
         return response.ok({ transaction })
     }
+
+    async chargeBack({ request, response }: HttpContext) {
+        const { id } = request.params()
+
+        const transaction = await Transaction.query().where('id', id).preload('gateway').firstOrFail()
+
+        if(transaction.status !== "paid") {
+            return response.badRequest({ message: 'Only paid transactions can be charged back' })
+        }
+
+        const chargeBackResponse = await GatewayService.processChargeBack(transaction.gateway.name, transaction.externalId)
+
+        if(chargeBackResponse) {
+            await transaction.merge({
+                status: 'charged_back'
+            }).save()
+        }
+
+        return response.ok({ message: 'Charge back successful', transaction })
+    }
+
 }
