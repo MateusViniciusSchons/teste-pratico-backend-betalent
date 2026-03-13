@@ -9,16 +9,13 @@ export default class GatewaysController {
         return response.ok({ gateways })
     }
 
-    async toggleActive({ request, response }: HttpContext) {
-        const { id, action } = request.params()
+    async updatePatch({ request, response }: HttpContext) {
+        const { id } = request.params()
+        const { isActive, priority } = request.only(['isActive', 'priority'])
 
         const gateway = await Gateway.findOrFail(id)
 
-        if(!['activate', 'deactivate'].includes(action)) {
-            throw new Error('Invalid action. Use "activate" or "deactivate".')
-        }
-
-        await gateway.merge({ isActive: action === 'activate' }).save()
+        await gateway.merge({ isActive, priority }).save()
 
         return response.ok({ gateway })
     }

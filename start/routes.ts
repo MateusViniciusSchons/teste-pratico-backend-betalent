@@ -44,7 +44,7 @@ router
 
         //Gateways
         router.get('gateways', [GatewaysController, 'index']).use(middleware.role(['admin']))
-        router.post('gateways/:id/:action', [GatewaysController, 'toggleActive']).use(middleware.role(['admin']))
+        router.patch('gateways/:id', [GatewaysController, 'updatePatch']).use(middleware.role(['admin']))
 
         
       })

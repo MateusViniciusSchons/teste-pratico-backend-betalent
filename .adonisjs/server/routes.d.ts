@@ -21,14 +21,13 @@ export type ScannedRoutes = {
     'transactions.index': { paramsTuple?: []; params?: {} }
     'transactions.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'gateways.index': { paramsTuple?: []; params?: {} }
-    'gateways.toggle_active': { paramsTuple: [ParamValue,ParamValue]; params: {'id': ParamValue,'action': ParamValue} }
+    'gateways.update_patch': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.login': { paramsTuple?: []; params?: {} }
     'transactions.create': { paramsTuple?: []; params?: {} }
     'users.create': { paramsTuple?: []; params?: {} }
     'products.create': { paramsTuple?: []; params?: {} }
-    'gateways.toggle_active': { paramsTuple: [ParamValue,ParamValue]; params: {'id': ParamValue,'action': ParamValue} }
   }
   GET: {
     'users.index': { paramsTuple?: []; params?: {} }
@@ -59,6 +58,9 @@ export type ScannedRoutes = {
   DELETE: {
     'users.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'products.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+  }
+  PATCH: {
+    'gateways.update_patch': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

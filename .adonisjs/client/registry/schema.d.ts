@@ -211,13 +211,13 @@ export interface Registry {
       errorResponse: unknown
     }
   }
-  'gateways.toggle_active': {
-    methods: ["POST"]
-    pattern: '/api/v1/gateways/:id/:action'
+  'gateways.update_patch': {
+    methods: ["PATCH"]
+    pattern: '/api/v1/gateways/:id'
     types: {
       body: {}
-      paramsTuple: [ParamValue, ParamValue]
-      params: { id: ParamValue; action: ParamValue }
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
       query: {}
       response: unknown
       errorResponse: unknown
