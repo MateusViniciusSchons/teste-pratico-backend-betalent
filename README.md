@@ -6,18 +6,17 @@ Este projeto foi desenvolvido como parte do teste prático para a **BeTalent Tec
 
 ## 🛠 Tecnologias e Ferramentas
 - **Framework:** AdonisJS
-- **Linguagem:** TypeScript
 - **Banco de Dados:** MySQL
 - **ORM:** Lucid ORM
-- **Containerização:** Docker & Docker Compose
-- **Testes:** Japa (TDD)
+- **Containerização:** Docker
+- **Testes:** Japa
 - **Validação:** VineJS
 
 ## 🚀 Como Instalar e Rodar
 
 ### Pré-requisitos
 - Docker e Docker Compose instalados.
-- Um cliente HTTP (Postman, Insomnia ou a extensão Thunder Client).
+- Um cliente HTTP (Postman, Insomnia, etc.).
 
 ### 1. Clonar o Repositório
 ```bash
