@@ -44,9 +44,12 @@ export default class UsersController {
         const user = await User.findByOrFail('id', userId)
 
         return response.ok({
-            id: user.id,
-            email: user.email,
-            role: user.role,
+            user: {
+
+                id: user.id,
+                email: user.email,
+                role: user.role,
+            }
         })
     }
 
@@ -71,7 +74,9 @@ export default class UsersController {
             role
         }).save()
 
-        return response.noContent()
+        return response.ok({
+            user
+        })
     }
 
     async delete({ request, response }: HttpContext) {
