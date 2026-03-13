@@ -12,6 +12,7 @@ router
   .group(() => {
     router
       .group(() => {
+        //Auth
         router.post('auth/login', [AuthController, 'login'])
 
         //Transactions
@@ -21,32 +22,31 @@ router
     router
       .group(() => {
         //Users
-        router.post('users', [UsersController, 'create']).use(middleware.role(['admin']))
-        router.get('users', [UsersController, 'index']).use(middleware.role(['admin']))
-        router.get('users/:id', [UsersController, 'show']).use(middleware.role(['admin']))
-        router.put('users/:id', [UsersController, 'update']).use(middleware.role(['admin']))
-        router.delete('users/:id', [UsersController, 'delete']).use(middleware.role(['admin']))
+        router.post('users', [UsersController, 'create']).use(middleware.role(['admin', 'manager']))
+        router.get('users', [UsersController, 'index']).use(middleware.role(['admin', 'manager']))
+        router.get('users/:id', [UsersController, 'show']).use(middleware.role(['admin', 'manager']))
+        router.put('users/:id', [UsersController, 'update']).use(middleware.role(['admin', 'manager']))
+        router.delete('users/:id', [UsersController, 'delete']).use(middleware.role(['admin', 'manager']))
 
         //Products
-        router.post('products', [ProductsController, 'create']).use(middleware.role(['admin', 'manager']))
-        router.get('products', [ProductsController, 'index']).use(middleware.role(['admin', 'manager']))
-        router.get('products/:id', [ProductsController, 'show']).use(middleware.role(['admin', 'manager']))
-        router.put('products/:id', [ProductsController, 'update']).use(middleware.role(['admin', 'manager']))
-        router.delete('products/:id', [ProductsController, 'delete']).use(middleware.role(['admin', 'manager']))
+        router.post('products', [ProductsController, 'create']).use(middleware.role(['admin', 'manager', 'finance']))
+        router.get('products', [ProductsController, 'index']).use(middleware.role(['admin', 'manager', 'finance']))
+        router.get('products/:id', [ProductsController, 'show']).use(middleware.role(['admin', 'manager', 'finance']))
+        router.put('products/:id', [ProductsController, 'update']).use(middleware.role(['admin', 'manager', 'finance']))
+        router.delete('products/:id', [ProductsController, 'delete']).use(middleware.role(['admin', 'manager', 'finance']))
 
         //Clients
-        router.get('clients', [ClientsController, 'index']).use(middleware.role(['admin', 'manager', 'user']))
-        router.get('clients/:id/transactions', [ClientsController, 'showWithTransactions']).use(middleware.role(['admin', 'manager', 'user']))
+        router.get('clients', [ClientsController, 'index']).use(middleware.role(['admin', 'user']))
+        router.get('clients/:id/transactions', [ClientsController, 'showWithTransactions']).use(middleware.role(['admin', 'user']))
 
         //Transactions
-        router.get('transactions', [TransactionsController, 'index']).use(middleware.role(['admin', 'manager']))
-        router.get('transactions/:id', [TransactionsController, 'show']).use(middleware.role(['admin', 'manager']))
+        router.get('transactions', [TransactionsController, 'index']).use(middleware.role(['admin', 'user']))
+        router.get('transactions/:id', [TransactionsController, 'show']).use(middleware.role(['admin', 'user']))
+        router.post('transactions/:id/chargeback', [TransactionsController, 'chargeBack']).use(middleware.role(['admin', 'finance']))
 
         //Gateways
-        router.get('gateways', [GatewaysController, 'index']).use(middleware.role(['admin']))
-        router.patch('gateways/:id', [GatewaysController, 'updatePatch']).use(middleware.role(['admin']))
-        router.post('transactions/:id/chargeback', [TransactionsController, 'chargeBack']).use(middleware.role(['admin', 'manager']))
-
+        router.get('gateways', [GatewaysController, 'index']).use(middleware.role(['admin', 'user']))
+        router.patch('gateways/:id', [GatewaysController, 'updatePatch']).use(middleware.role(['admin', 'user']))
         
       })
       .use(middleware.auth())

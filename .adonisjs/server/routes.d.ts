@@ -20,9 +20,9 @@ export type ScannedRoutes = {
     'clients.show_with_transactions': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'transactions.index': { paramsTuple?: []; params?: {} }
     'transactions.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'transactions.charge_back': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'gateways.index': { paramsTuple?: []; params?: {} }
     'gateways.update_patch': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'transactions.charge_back': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.login': { paramsTuple?: []; params?: {} }

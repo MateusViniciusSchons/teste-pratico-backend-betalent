@@ -199,6 +199,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'transactions.charge_back': {
+    methods: ["POST"]
+    pattern: '/api/v1/transactions/:id/chargeback'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'gateways.index': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/gateways'
@@ -214,18 +226,6 @@ export interface Registry {
   'gateways.update_patch': {
     methods: ["PATCH"]
     pattern: '/api/v1/gateways/:id'
-    types: {
-      body: {}
-      paramsTuple: [ParamValue]
-      params: { id: ParamValue }
-      query: {}
-      response: unknown
-      errorResponse: unknown
-    }
-  }
-  'transactions.charge_back': {
-    methods: ["POST"]
-    pattern: '/api/v1/transactions/:id/chargeback'
     types: {
       body: {}
       paramsTuple: [ParamValue]
