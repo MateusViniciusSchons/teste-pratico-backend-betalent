@@ -7,6 +7,7 @@ export interface ApiDefinition {
   }
   transactions: {
     create: typeof routes['transactions.create']
+    index: typeof routes['transactions.index']
   }
   users: {
     create: typeof routes['users.create']

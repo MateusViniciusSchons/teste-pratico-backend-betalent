@@ -90,6 +90,12 @@ const routes = {
     tokens: [{"old":"/api/v1/clients/:id/transactions","type":0,"val":"api","end":""},{"old":"/api/v1/clients/:id/transactions","type":0,"val":"v1","end":""},{"old":"/api/v1/clients/:id/transactions","type":0,"val":"clients","end":""},{"old":"/api/v1/clients/:id/transactions","type":1,"val":"id","end":""},{"old":"/api/v1/clients/:id/transactions","type":0,"val":"transactions","end":""}],
     types: placeholder as Registry['clients.show_with_transactions']['types'],
   },
+  'transactions.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/transactions',
+    tokens: [{"old":"/api/v1/transactions","type":0,"val":"api","end":""},{"old":"/api/v1/transactions","type":0,"val":"v1","end":""},{"old":"/api/v1/transactions","type":0,"val":"transactions","end":""}],
+    types: placeholder as Registry['transactions.index']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

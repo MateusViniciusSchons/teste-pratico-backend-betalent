@@ -105,4 +105,12 @@ export default class TransactionsController {
         } })
 
     }
+
+    async index({ response }: HttpContext) {
+        const transactions = await Transaction.query().preload('client', (clientQuery) => {
+            clientQuery.select('id', 'name')
+        })
+
+        return response.ok({ transactions })
+    }
 }

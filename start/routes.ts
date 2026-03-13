@@ -37,6 +37,8 @@ router
         router.get('clients', [ClientsController, 'index']).use(middleware.role(['admin', 'manager', 'user']))
         router.get('clients/:id/transactions', [ClientsController, 'showWithTransactions']).use(middleware.role(['admin', 'manager', 'user']))
 
+        //Transactions
+        router.get('transactions', [TransactionsController, 'index']).use(middleware.role(['admin', 'manager']))
 
 
         
