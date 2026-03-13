@@ -187,4 +187,16 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'transactions.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/transactions/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
 }

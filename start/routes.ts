@@ -39,6 +39,7 @@ router
 
         //Transactions
         router.get('transactions', [TransactionsController, 'index']).use(middleware.role(['admin', 'manager']))
+        router.get('transactions/:id', [TransactionsController, 'show']).use(middleware.role(['admin', 'manager']))
 
 
         

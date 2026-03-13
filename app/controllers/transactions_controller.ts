@@ -113,4 +113,17 @@ export default class TransactionsController {
 
         return response.ok({ transactions })
     }
+
+    async show({ request, response }: HttpContext) {
+        const { id} = request.params()
+
+        const transaction = await Transaction.query().where('id', id).preload('client', (clientQuery) => {
+            clientQuery.select('id', 'name', 'email')
+        }).preload('products', (transactionProductsQuery) => {
+            transactionProductsQuery.preload('product', (productQuery) => {
+                productQuery.select('id', 'name', 'amount')
+            })}).firstOrFail()
+
+        return response.ok({ transaction })
+    }
 }
