@@ -21,7 +21,7 @@ export default class GatewaysController {
 
         const gateway = await Gateway.findOrFail(id)
 
-        if(priority !== gateway.priority) {
+        if(priority && priority !== gateway.priority) {
             const anotherGatewayWithSamePriority = await Gateway.findBy('priority', priority)
             
             if(anotherGatewayWithSamePriority) return response.conflict({ message: 'Not able to change gateway priority, another gatway has the selected priority.'})
