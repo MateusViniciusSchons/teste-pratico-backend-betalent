@@ -1,5 +1,5 @@
 import { BASE_URL } from '#tests/helpers/credentials'
-import { createGateway, createProduct } from '#tests/helpers/factories'
+import { createProduct } from '#tests/helpers/factories'
 import { getAdminToken } from '#tests/helpers/getTokens'
 import { test } from '@japa/runner'
 
