@@ -1,6 +1,8 @@
 import User from '#models/user'
+import { idParamValidator } from '#validators/id_param.validator'
 import { postUserValidator } from '#validators/user.validator'
 import type { HttpContext } from '@adonisjs/core/http'
+import vine from '@vinejs/vine'
 
 export default class UsersController {
     async create({  request, response }: HttpContext) {
@@ -34,7 +36,10 @@ export default class UsersController {
     }
 
     async show({ request, response }: HttpContext) {
-        const { id: userId } = request.params()
+        const { id: userId } = await vine.validate({
+            schema: idParamValidator,
+            data: request.params(),
+        })
 
         const user = await User.findByOrFail('id', userId)
 
@@ -46,7 +51,10 @@ export default class UsersController {
     }
 
     async update({ request, response }: HttpContext) {
-        const { id } = request.params()
+        const { id } = await vine.validate({
+            schema: idParamValidator,
+            data: request.params(),
+        })
         const { email, password, role } = await request.validateUsing(postUserValidator)
         
         const user = await User.findOrFail(id)
@@ -67,7 +75,10 @@ export default class UsersController {
     }
 
     async delete({ request, response }: HttpContext) {
-        const { id } = request.params()
+        const { id } = await vine.validate({
+            schema: idParamValidator,
+            data: request.params(),
+        })
         
         const user = await User.findOrFail(id)
 

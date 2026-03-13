@@ -1,5 +1,7 @@
 import Product from '#models/product'
+import { idParamValidator } from '#validators/id_param.validator'
 import type { HttpContext } from '@adonisjs/core/http'
+import vine from '@vinejs/vine'
 
 export default class ProductsController {
     async create({  request, response }: HttpContext) {
@@ -32,7 +34,10 @@ export default class ProductsController {
         }
     
         async show({ request, response }: HttpContext) {
-            const { id: productId } = request.params()
+            const { id: productId } = await vine.validate({
+                schema: idParamValidator,
+                data: request.params(),
+            })
     
             const product = await Product.findByOrFail('id', productId)
     
@@ -46,7 +51,10 @@ export default class ProductsController {
         }
     
         async update({ request, response }: HttpContext) {
-            const { id } = request.params()
+            const { id } = await vine.validate({
+                schema: idParamValidator,
+                data: request.params(),
+            })
             const { name, amount } = request.only(['name', 'amount'])
             
             const product = await Product.findOrFail(id)
@@ -60,7 +68,10 @@ export default class ProductsController {
         }
     
         async delete({ request, response }: HttpContext) {
-            const { id } = request.params()
+            const { id } = await vine.validate({
+                schema: idParamValidator,
+                data: request.params(),
+            })
             
             const product = await Product.findOrFail(id)
     

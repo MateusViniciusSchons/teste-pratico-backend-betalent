@@ -4,7 +4,9 @@ import Product from '#models/product'
 import Transaction from '#models/transaction'
 import TransactionProduct from '#models/transaction_product'
 import { GatewayService } from '#services/gateways/gateway.service'
+import { idParamValidator } from '#validators/id_param.validator'
 import type { HttpContext } from '@adonisjs/core/http'
+import vine from '@vinejs/vine'
 
 export default class TransactionsController {
     async create({ request, response }: HttpContext) {
@@ -113,7 +115,10 @@ export default class TransactionsController {
     }
 
     async show({ request, response }: HttpContext) {
-        const { id} = request.params()
+        const { id} = await vine.validate({
+            schema: idParamValidator,
+            data: request.params(),
+        })
 
         const transaction = await Transaction.query().where('id', id).preload('client', (clientQuery) => {
             clientQuery.select('id', 'name', 'email')
@@ -126,7 +131,10 @@ export default class TransactionsController {
     }
 
     async chargeBack({ request, response }: HttpContext) {
-        const { id } = request.params()
+        const { id } = await vine.validate({
+            schema: idParamValidator,
+            data: request.params(),
+        })
 
         const transaction = await Transaction.query().where('id', id).preload('gateway').firstOrFail()
 
