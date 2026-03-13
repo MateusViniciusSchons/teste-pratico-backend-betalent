@@ -65,7 +65,13 @@ export default class ProductsController {
                 amount, 
             }).save()
     
-            return response.noContent()
+            return response.ok({
+                product: {
+                    id: product.id,
+                    name: product.name,
+                    amount: product.amount
+                }
+            })
         }
     
         async delete({ request, response }: HttpContext) {
