@@ -1,253 +1,103 @@
-# Teste Prático Back-end BeTalent
+# BeTalent - API de Pagamentos Multi-Gateway - Mateus Schons
 
-[BeTalent Tech](https://betalent.tech/) é uma software house que conecta *talentos incríveis* a negócios, para criar e desenvolver produtos e serviços digitais eficientes.
+Esta é uma API RESTful para gerenciamento de pagamentos multi-gateway. Caso o primeiro gateway falhe, o sistema tenta realizar o pagamento automaticamente com o próximo disponível, garantindo uma experiência sem erros para o usuário final.
 
-Este é nosso **Teste Prático** para seleção de talentos back-end. É necessário estar participando de um de nossos processos seletivos para submeter este teste para avaliação. 
+Este projeto foi desenvolvido como parte do teste prático para a **BeTalent Tech**.
 
-> [!WARNING]
-> É necessário estar participando de uma de nossas seleções de talentos para submeter este teste à avaliação. Se você fizer esse teste e nos enviar sem estar participando de um processo seletivo, sua solução não será avaliada.
-  
-## 📋 Sobre o Teste
+## 🛠 Tecnologias e Ferramentas
+- **Framework:** AdonisJS
+- **Linguagem:** TypeScript
+- **Banco de Dados:** MySQL
+- **ORM:** Lucid ORM
+- **Containerização:** Docker & Docker Compose
+- **Testes:** Japa (TDD)
+- **Validação:** VineJS
 
-Este teste foi estruturado em níveis progressivos de complexidade, permitindo que você demonstre suas habilidades de acordo com sua experiência. Você pode optar por implementar um ou mais níveis, e sua avaliação será baseada na qualidade do código e funcionalidades implementadas em cada nível escolhido.
+## 🚀 Como Instalar e Rodar
 
-## 🎯 O Desafio
+### Pré-requisitos
+- Docker e Docker Compose instalados.
+- Um cliente HTTP (Postman, Insomnia ou a extensão Thunder Client).
 
-O teste consiste em estruturar uma API RESTful conectada a um banco de dados e a duas APIs de terceiros.
-
-Trata-se de um sistema gerenciador de pagamentos multi-gateway. Ao realizar uma compra, deve-se tentar realizar a cobrança junto aos gateways, seguindo a ordem de prioridade definida. Caso o primeiro gateway resulte em erro, deve-se fazer a tentativa no segundo gateway. Se algum gateway retornar sucesso, não deve ser informado erro no retorno da API.
-
-Deve ser levada em consideração a facilidade de adicionar novos gateways de forma simples e modular na API, no futuro.
-
-Você pode clonar este repositório para facilitar o desenvolvimento.
-
-### Frameworks aceitos
-- [Adonis](https://adonisjs.com/) 5 ou superior (Node.js)
-- [Laravel](https://laravel.com/) 10 ou superior (PHP)
-
-## 📊 Níveis de implementação
-
-### Nível 1
-Escolha esse nível se você se considera iniciante ou júnior, por exemplo:
-- Valor da compra vem direto pela API
-- Gateways sem autenticação
-
-### Nível 2
-Escolha esse nível se você é júnior experiente ou pleno, por exemplo:
-- Valor da compra vem do produto e suas quantidades calculada via back
-- Gateways com autenticação
-
-### Nível 3
-Escolha esse nível se você é pleno ou sênior, por exemplo:
-- Valor da compra vem de múltiplos produtos e suas quantidades selecionadas e calculada via back
-- Gateways com autenticação
-- Usuários tem roles:
-  - ADMIN - faz tudo
-  - MANAGER - pode gerenciar produtos e usuários
-  - FINANCE - pode gerenciar produtos e realizar reembolso
-  - USER - pode o resto que não foi citado
-- Uso de TDD
-- Docker compose com MySQL, aplicação e mock dos gateways
-
-## 🗄 Estrutura do Banco de Dados
-
-O banco de dados deve ser estruturado à sua escolha, mas minimamente deve conter:
-
-- **users**
-  - email
-  - password
-  - role
-- **gateways**
-  - name
-  - is_active
-  - priority
-- **clients**
-  - name
-  - email
-- **products**
-  - name
-  - amount
-- **transaction_products**
-  - transaction_id
-  - product_id
-  - quantity
-- **transactions**
-  - client
-  - gateway
-  - external_id
-  - status
-  - amount
-  - card_last_numbers
-  - [product_id, quantity] (exclusivo do nível 2)
-
-## 🛣 Rotas do Sistema
-
-### Rotas Públicas
-- Realizar o login
-- Realizar uma compra informando o produto
-
-### Rotas Privadas
-- Ativar/desativar um gateway
-- Alterar a prioridade de um gateway
-- CRUD de usuários com validação por roles
-- CRUD de produtos com validação por roles
-- Listar todos os clientes
-- Detalhe do cliente e todas suas compras
-- Listar todas as compras
-- Detalhes de uma compra
-- Realizar reembolso de uma compra junto ao gateway com validação por roles
-
-## 🔧 Requisitos Técnicos
-
-### Obrigatórios
-- MySQL como banco de dados
-- Respostas devem ser em JSON
-- ORM para gestão do banco (Eloquent, Lucid, Knex, Bookshelf etc.)
-- Validação de dados (VineJS, etc.)
-- README detalhado com:
-  - Requisitos
-  - Como instalar e rodar o projeto
-  - Detalhamento de rotas
-  - Outras informações relevantes
-- Implementar TDD
-- Docker compose com MySQL, aplicação e mock dos gateways
-
-## 🔌 Multi-Gateways
-
-Para auxiliar no desenvolvimento, disponibilizamos:
-
-- esta [Collection](https://api.postman.com/collections/37798616-3e618a0f-a01b-4186-9b99-dec8d1affbb9?access_key=PMAT-01JCK3XCWSXX7JJ5Y6CK3GP0BK) para você usar no Postman, no Insomnia ou em outras ferramentas de sua preferência;
-- no arquivo [multigateways_payment_api.json](https://github.com/BeMobile/desafio-back-end/blob/main/multigateways_payment_api.json), contido neste repositório.
-
-### Rodando os Mocks
-
-**Com autenticação:**
+### 1. Clonar o Repositório
 ```bash
-docker run -p 3001:3001 -p 3002:3002 matheusprotzen/gateways-mock
+git clone [https://github.com/](https://github.com/)[seu-usuario]/[nome-do-repo].git
+cd [nome-do-repo]
 ```
 
-**Sem autenticação:**
+### 2. Configurar Variáveis de Ambiente
+Copie o arquivo de exemplo e verifique as credenciais do banco de dados e as URLs dos gateways:
 ```bash
-docker run -p 3001:3001 -p 3002:3002 -e REMOVE_AUTH='true' matheusprotzen/gateways-mock
+cp .env.example .env
 ```
 
-O Gateway 1 ficará disponível em http://localhost:3001 e o Gateway 2 em http://localhost:3002.
-
-### Gateway 1 (http://localhost:3001)
-
-#### Login
-```http
-POST /login
+### 3. Subir Containers
+Este comando iniciará quatro containers: a API Adonis, o MySQL e os dois Mocks de Gateway:
+```bash
+docker-compose up -d
 ```
+
+### 4. Instalar Dependências e Preparar o Banco
+Execute os comandos abaixo para instalar os pacotes, rodar as migrations e os seeders (para popular usuários e gateways iniciais):
+```bash
+# Instalar dependências
+docker-compose exec app npm install
+
+# Rodar Migrations e Seeds
+docker-compose exec app node ace migration:run
+docker-compose exec app node ace db:seed
+```
+
+Aqui está o bloco de código Markdown contendo apenas a seção de rotas, estruturado para o Nível 3 do desafio:
+
+Markdown
+
+## 🚦 Rotas da API
+
+### 🔓 Públicas
+* **POST** `/login` - Realizar o login e obter token de acesso.
+* **POST** `/checkout` - Realizar uma compra informando múltiplos produtos e dados do cartão.
+
+### 🔒 Privadas (Requer Autenticação)
+| Método | Rota | Descrição | Permissão (Roles) |
+| :--- | :--- | :--- | :--- |
+| **PATCH** | `/gateways/:id` | Ativar/desativar ou alterar a prioridade de um gateway. | `ADMIN` |
+| **POST** | `/transactions/:id/refund` | Realizar o reembolso de uma compra junto ao gateway. | `FINANCE`, `ADMIN` |
+| **GET** | `/clients` | Listar todos os clientes. | `MANAGER`, `ADMIN` |
+| **GET** | `/clients/:id` | Detalhes de um cliente específico e suas compras. | `MANAGER`, `ADMIN` |
+| **GET** | `/transactions` | Listar todas as compras realizadas. | `USER`, `FINANCE`, `MANAGER`, `ADMIN` |
+| **GET** | `/transactions/:id` | Detalhes específicos de uma compra. | `USER`, `FINANCE`, `MANAGER`, `ADMIN` |
+| **CRUD** | `/products` | Gerenciamento completo de produtos (Criar, Listar, Editar, Excluir). | `MANAGER`, `ADMIN` |
+| **CRUD** | `/users` | Gerenciamento completo de usuários. | `ADMIN` |
+
+## 🛣️ Detalhamento das Rotas
+
+### 💳 Pagamentos (Checkout)
+**POST** `/checkout`
+Realiza a compra processando o pagamento através da lógica de multi-gateway.
+- **Payload:**
 ```json
 {
-  "email": "dev@betalent.tech",
-  "token": "FEC9BB078BF338F464F96B48089EB498"
+  "products": [
+    { "id": 1, "quantity": 2 },
+    { "id": 3, "quantity": 1 }
+  ],
+  "card": {
+    "name": "Nome do Titular",
+    "number": "5569000000006063",
+    "cvv": "010",
+    "expiry": "12/28"
+  }
 }
 ```
-*Autenticação das seguintes rotas deve ser feita usando o Bearer token retornado da rota de login.*
 
-#### Listagem das transações
-```http
-GET /transactions
+## 🧪 Testes Automatizados (TDD)
+
+O projeto foi desenvolvido seguindo os princípios de **TDD (Test Driven Development)**, garantindo que as regras de negócio, como a alternância entre gateways (fallback) e as permissões de acesso (RBAC), estejam protegidas contra regressões.
+
+### Rodando os Testes
+Para executar a suíte de testes completa dentro do container Docker, utilize:
+
+```bash
+docker-compose exec app node ace test
 ```
-
-#### Criação de uma transação
-```http
-POST /transactions
-```
-```json
-{
-  "amount": 1000,
-  "name": "tester",
-  "email": "tester@email.com",
-  "cardNumber": "5569000000006063",
-  "cvv": "010"
-}
-```
-- `amount` - valor da compra em centavos
-- `name` - nome do comprador
-- `email` - email do comprador
-- `cardNumber` - número do cartão (16 dígitos)
-- `cvv` - cvv do cartão, ao usar cvv 100 ou 200 vai ser retornado um erro simulando dados inválidos do cartão
-
-#### Reembolso de uma transação
-```http
-POST /transactions/:id/charge_back
-```
-`:id` - id da transação
-
-### Gateway 2 (http://localhost:3002)
-
-*Autenticação das seguintes rotas deve ser feito usando os seguintes dados nos headers:*
-```
-Gateway-Auth-Token=tk_f2198cc671b5289fa856
-Gateway-Auth-Secret=3d15e8ed6131446ea7e3456728b1211f
-```
-
-#### Listagem das transações
-```http
-GET /transacoes
-```
-
-#### Criação de uma transação
-```http
-POST /transacoes
-```
-```json
-{
-  "valor": 1000,
-  "nome": "tester",
-  "email": "tester@email.com",
-  "numeroCartao": "5569000000006063",
-  "cvv": "010"
-}
-```
-- `valor` - valor da compra em centavos
-- `nome` - nome do comprador
-- `email` - email do comprador
-- `numeroCartao` - número do cartão (16 dígitos)
-- `cvv` - cvv do cartão, ao usar cvv 200 ou 300 vai ser retornado um erro simulando dados inválidos do cartão
-
-#### Reembolso de uma transação
-```http
-POST /transacoes/reembolso
-```
-```json
-{
-  "id": "3d15e8ed-6131-446e-a7e3-456728b1211f"
-}
-```
-* `id` - id da transação
-
-## 📝 Critérios de Avaliação
-
-Serão critérios para avaliação da solução fornecida:
-- Lógica de programação
-- Organização do projeto
-- Legibilidade do código
-- Validação necessária dos dados
-- Forma adequada de utilização dos recursos
-- Seguimento dos padrões especificados
-- Tratamento dos dados sensíveis corretamente
-- Clareza na documentação
-
-## ⏰ Considerações Finais
-
-Caso não consiga completar o teste até o prazo definido:
-- Garanta que tudo que foi construído esteja em funcionamento
-- Relate no README quais foram as dificuldades encontradas
-- Documente o que foi implementado e o que ficou pendente
-
-## 📤 Envio da Solução
-O projeto deverá ser hospedado em um repositório no seu GitHub. O link do repositório deverá ser fornecido por meio do formulário do processo seletivo do qual o(a) candidato(a) está participando. Não serão aceitos links de projetos enviados por outros meios.
-
-## 🎓 Comunidade BeTalent
-
-Aproveite para conhecer e se inscrever na **BeTalent Academy**, nossa newsletter na Substack: [https://beacademy.substack.com/](https://beacademy.substack.com/)
-
-**BeTalent Academy** é onde trazemos curadoria de tendências e dicas em tecnologia com a missão de levar conhecimento técnico e de liderança à **comunidade BeTalent**.
-
----
-
-Boa sorte! 🍀
