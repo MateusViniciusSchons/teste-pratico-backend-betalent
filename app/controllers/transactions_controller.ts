@@ -5,12 +5,13 @@ import Transaction from '#models/transaction'
 import TransactionProduct from '#models/transaction_product'
 import { GatewayService } from '#services/gateways/gateway.service'
 import { idParamValidator } from '#validators/id_param.validator'
+import { postTransactionValidator } from '#validators/transaction.validator'
 import type { HttpContext } from '@adonisjs/core/http'
 import vine from '@vinejs/vine'
 
 export default class TransactionsController {
     async create({ request, response }: HttpContext) {
-        const { clientName, clientEmail, products, cardNumber, cvv } = request.only(['clientName', 'clientEmail', 'products', 'cardNumber', 'cvv'])
+        const { clientName, clientEmail, products, cardNumber, cvv } = await request.validateUsing(postTransactionValidator)
 
         let totalAmount = 0
         for(const product of products) {
