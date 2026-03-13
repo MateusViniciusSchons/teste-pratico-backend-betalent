@@ -75,7 +75,11 @@ export default class UsersController {
         }).save()
 
         return response.ok({
-            user
+            user: {
+              id: user.id,
+              email: user.email,
+              role: user.role
+            }
         })
     }
 
