@@ -1,10 +1,9 @@
-import { UserSchema } from '#database/schema'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { compose } from '@adonisjs/core/helpers'
 import hash from '@adonisjs/core/services/hash'
 import type { AccessToken } from '@adonisjs/auth/access_tokens'
-import { column } from '@adonisjs/lucid/orm'
+import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
@@ -12,7 +11,7 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
     passwordColumnName: 'password',
 })
 
-export default class User extends compose(UserSchema, AuthFinder) {
+export default class User extends compose(BaseModel, AuthFinder) {
 
     static accessTokens = DbAccessTokensProvider.forModel(User)
     declare currentAccessToken?: AccessToken

@@ -7,7 +7,7 @@ import type { InferInput, SimpleError } from '@vinejs/vine/types'
 export type ParamValue = string | number | bigint | boolean
 
 export interface Registry {
-  'auth.auth.login': {
+  'auth.login': {
     methods: ["POST"]
     pattern: '/api/v1/auth/login'
     types: {
@@ -17,6 +17,18 @@ export interface Registry {
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['login']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['login']>>>
+    }
+  }
+  'transactions.create': {
+    methods: ["POST"]
+    pattern: '/api/v1/transactions'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
     }
   }
   'users.create': {
@@ -146,6 +158,18 @@ export interface Registry {
       body: {}
       paramsTuple: []
       params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'clients.show_with_transactions': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/clients/:id/transactions'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
       query: {}
       response: unknown
       errorResponse: unknown

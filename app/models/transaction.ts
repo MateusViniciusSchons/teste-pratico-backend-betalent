@@ -1,8 +1,10 @@
-import { TransactionSchema } from '#database/schema'
-import { column } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
+import Client from './client.ts'
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
+import TransactionProduct from './transaction_product.ts'
 
-export default class Transaction extends TransactionSchema {
+export default class Transaction extends BaseModel {
     @column({ isPrimary: true })
     declare id: number
 
@@ -13,17 +15,23 @@ export default class Transaction extends TransactionSchema {
     declare cardLastNumbers: string
 
     @column()
-    declare client: number
+    declare clientId: number
+
+    @belongsTo(() => Client)
+    declare client: BelongsTo<typeof Client>
 
     @column()
     declare externalId: string
     
     @column()
-    declare gateway: number
+    declare gatewayId: number
     
     @column()
     declare status: string
-    
+
+    @hasMany(() => TransactionProduct)
+    declare products: HasMany<typeof TransactionProduct>
+
     @column.dateTime({ autoCreate: true })
     declare createdAt: DateTime
 

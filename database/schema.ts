@@ -99,20 +99,20 @@ export class TransactionProductSchema extends BaseModel {
 }
 
 export class TransactionSchema extends BaseModel {
-  static $columns = ['amount', 'cardLastNumbers', 'client', 'createdAt', 'externalId', 'gateway', 'id', 'status', 'updatedAt'] as const
+  static $columns = ['amount', 'cardLastNumbers', 'clientId', 'createdAt', 'externalId', 'gatewayId', 'id', 'status', 'updatedAt'] as const
   $columns = TransactionSchema.$columns
   @column()
   declare amount: number
   @column()
   declare cardLastNumbers: string
   @column()
-  declare client: number
+  declare clientId: number
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
   @column()
-  declare externalId: string
+  declare externalId: string | null
   @column()
-  declare gateway: number
+  declare gatewayId: number | null
   @column({ isPrimary: true })
   declare id: number
   @column()

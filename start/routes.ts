@@ -1,5 +1,6 @@
 import ClientsController from '#controllers/clients_controller'
 import ProductsController from '#controllers/products_controller'
+import TransactionsController from '#controllers/transactions_controller'
 import UsersController from '#controllers/users_controller'
 import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
@@ -10,11 +11,11 @@ router
   .group(() => {
     router
       .group(() => {
-        router.post('login', [AuthController, 'login'])
-        
+        router.post('auth/login', [AuthController, 'login'])
+
+        //Transactions
+        router.post('transactions', [TransactionsController, 'create'])
       })
-      .prefix('auth')
-      .as('auth')
 
     router
       .group(() => {
@@ -34,6 +35,11 @@ router
 
         //Clients
         router.get('clients', [ClientsController, 'index']).use(middleware.role(['admin', 'manager', 'user']))
+        router.get('clients/:id/transactions', [ClientsController, 'showWithTransactions']).use(middleware.role(['admin', 'manager', 'user']))
+
+
+
+        
       })
       .use(middleware.auth())
   })

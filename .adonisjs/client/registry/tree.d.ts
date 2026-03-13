@@ -3,9 +3,10 @@ import type { routes } from './index.ts'
 
 export interface ApiDefinition {
   auth: {
-    auth: {
-      login: typeof routes['auth.auth.login']
-    }
+    login: typeof routes['auth.login']
+  }
+  transactions: {
+    create: typeof routes['transactions.create']
   }
   users: {
     create: typeof routes['users.create']
@@ -23,5 +24,6 @@ export interface ApiDefinition {
   }
   clients: {
     index: typeof routes['clients.index']
+    showWithTransactions: typeof routes['clients.show_with_transactions']
   }
 }

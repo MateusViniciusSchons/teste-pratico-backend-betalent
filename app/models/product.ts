@@ -1,8 +1,7 @@
-import { ProductSchema } from '#database/schema'
-import { column } from '@adonisjs/lucid/orm'
+import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
-export default class Product extends ProductSchema {
+export default class Product extends BaseModel {
     @column({ isPrimary: true })
     declare id: number
 

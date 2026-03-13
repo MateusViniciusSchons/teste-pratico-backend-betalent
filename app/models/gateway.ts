@@ -1,8 +1,7 @@
-import { GatewaySchema } from '#database/schema'
-import { column } from '@adonisjs/lucid/orm'
+import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
-export default class Gateway extends GatewaySchema {
+export default class Gateway extends BaseModel {
     @column({ isPrimary: true })
     declare id: number
     

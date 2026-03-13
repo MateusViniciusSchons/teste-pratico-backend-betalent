@@ -6,11 +6,11 @@ export default class extends BaseSchema {
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('client').unsigned().notNullable()
-      table.foreign('client').references('id').inTable('clients').onDelete('CASCADE')
-      table.integer('gateway').unsigned().notNullable()
-      table.foreign('gateway').references('id').inTable('gateways').onDelete('CASCADE')
-      table.string('external_id').notNullable()
+      table.integer('client_id').unsigned().notNullable()
+      table.foreign('client_id').references('id').inTable('clients').onDelete('CASCADE')
+      table.integer('gateway_id').unsigned().nullable()
+      table.foreign('gateway_id').references('id').inTable('gateways').onDelete('CASCADE')
+      table.string('external_id').nullable()
       table.enum('status', ['pending', 'paid', 'failed']).notNullable().defaultTo('pending')
       table.integer('amount').unsigned().notNullable()
       table.string('card_last_numbers', 4).notNullable()

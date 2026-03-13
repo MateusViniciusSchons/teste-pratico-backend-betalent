@@ -6,11 +6,17 @@ import type { ApiDefinition } from './tree.d.ts'
 const placeholder: any = {}
 
 const routes = {
-  'auth.auth.login': {
+  'auth.login': {
     methods: ["POST"],
     pattern: '/api/v1/auth/login',
     tokens: [{"old":"/api/v1/auth/login","type":0,"val":"api","end":""},{"old":"/api/v1/auth/login","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/login","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/login","type":0,"val":"login","end":""}],
-    types: placeholder as Registry['auth.auth.login']['types'],
+    types: placeholder as Registry['auth.login']['types'],
+  },
+  'transactions.create': {
+    methods: ["POST"],
+    pattern: '/api/v1/transactions',
+    tokens: [{"old":"/api/v1/transactions","type":0,"val":"api","end":""},{"old":"/api/v1/transactions","type":0,"val":"v1","end":""},{"old":"/api/v1/transactions","type":0,"val":"transactions","end":""}],
+    types: placeholder as Registry['transactions.create']['types'],
   },
   'users.create': {
     methods: ["POST"],
@@ -77,6 +83,12 @@ const routes = {
     pattern: '/api/v1/clients',
     tokens: [{"old":"/api/v1/clients","type":0,"val":"api","end":""},{"old":"/api/v1/clients","type":0,"val":"v1","end":""},{"old":"/api/v1/clients","type":0,"val":"clients","end":""}],
     types: placeholder as Registry['clients.index']['types'],
+  },
+  'clients.show_with_transactions': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/clients/:id/transactions',
+    tokens: [{"old":"/api/v1/clients/:id/transactions","type":0,"val":"api","end":""},{"old":"/api/v1/clients/:id/transactions","type":0,"val":"v1","end":""},{"old":"/api/v1/clients/:id/transactions","type":0,"val":"clients","end":""},{"old":"/api/v1/clients/:id/transactions","type":1,"val":"id","end":""},{"old":"/api/v1/clients/:id/transactions","type":0,"val":"transactions","end":""}],
+    types: placeholder as Registry['clients.show_with_transactions']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

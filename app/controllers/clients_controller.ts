@@ -6,4 +6,14 @@ export default class ClientsController {
         const clients = await Client.all()
         return response.ok({ clients })
     }
+
+    async showWithTransactions({ request, response }: HttpContext) {
+        const { id } = request.params()
+
+        const client = await Client.query().where('id', id).preload('transactions', (transactionsQuery) => {
+            transactionsQuery.preload('products')
+        }).firstOrFail()
+
+        response.ok({ client })
+    }
 }

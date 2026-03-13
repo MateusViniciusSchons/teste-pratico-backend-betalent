@@ -1,8 +1,9 @@
-import { ClientSchema } from '#database/schema'
-import { column } from '@adonisjs/lucid/orm'
+import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
+import type { HasMany } from '@adonisjs/lucid/types/relations'
 import { DateTime } from 'luxon'
+import Transaction from './transaction.ts'
 
-export default class Client extends ClientSchema {
+export default class Client extends BaseModel {
     @column({ isPrimary: true })
     declare id: number
 
@@ -11,6 +12,9 @@ export default class Client extends ClientSchema {
 
     @column()
     declare email: string
+
+    @hasMany(() => Transaction)
+    declare transactions: HasMany<typeof Transaction>
 
     @column.dateTime({ autoCreate: true })
     declare createdAt: DateTime
