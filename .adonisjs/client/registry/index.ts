@@ -108,6 +108,12 @@ const routes = {
     tokens: [{"old":"/api/v1/gateways","type":0,"val":"api","end":""},{"old":"/api/v1/gateways","type":0,"val":"v1","end":""},{"old":"/api/v1/gateways","type":0,"val":"gateways","end":""}],
     types: placeholder as Registry['gateways.index']['types'],
   },
+  'gateways.toggle_active': {
+    methods: ["POST"],
+    pattern: '/api/v1/gateways/:id/:action',
+    tokens: [{"old":"/api/v1/gateways/:id/:action","type":0,"val":"api","end":""},{"old":"/api/v1/gateways/:id/:action","type":0,"val":"v1","end":""},{"old":"/api/v1/gateways/:id/:action","type":0,"val":"gateways","end":""},{"old":"/api/v1/gateways/:id/:action","type":1,"val":"id","end":""},{"old":"/api/v1/gateways/:id/:action","type":1,"val":"action","end":""}],
+    types: placeholder as Registry['gateways.toggle_active']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

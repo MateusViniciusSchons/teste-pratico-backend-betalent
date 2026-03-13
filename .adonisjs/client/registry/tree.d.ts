@@ -30,5 +30,6 @@ export interface ApiDefinition {
   }
   gateways: {
     index: typeof routes['gateways.index']
+    toggleActive: typeof routes['gateways.toggle_active']
   }
 }
