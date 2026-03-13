@@ -1,4 +1,5 @@
 import ClientsController from '#controllers/clients_controller'
+import GatewaysController from '#controllers/gateways_controller'
 import ProductsController from '#controllers/products_controller'
 import TransactionsController from '#controllers/transactions_controller'
 import UsersController from '#controllers/users_controller'
@@ -41,6 +42,8 @@ router
         router.get('transactions', [TransactionsController, 'index']).use(middleware.role(['admin', 'manager']))
         router.get('transactions/:id', [TransactionsController, 'show']).use(middleware.role(['admin', 'manager']))
 
+        //Gateways
+        router.get('gateways', [GatewaysController, 'index']).use(middleware.role(['admin']))
 
         
       })

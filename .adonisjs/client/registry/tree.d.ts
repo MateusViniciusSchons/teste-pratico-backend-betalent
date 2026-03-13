@@ -28,4 +28,7 @@ export interface ApiDefinition {
     index: typeof routes['clients.index']
     showWithTransactions: typeof routes['clients.show_with_transactions']
   }
+  gateways: {
+    index: typeof routes['gateways.index']
+  }
 }

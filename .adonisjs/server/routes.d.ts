@@ -20,6 +20,7 @@ export type ScannedRoutes = {
     'clients.show_with_transactions': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'transactions.index': { paramsTuple?: []; params?: {} }
     'transactions.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'gateways.index': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -36,6 +37,7 @@ export type ScannedRoutes = {
     'clients.show_with_transactions': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'transactions.index': { paramsTuple?: []; params?: {} }
     'transactions.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'gateways.index': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'users.index': { paramsTuple?: []; params?: {} }
@@ -46,6 +48,7 @@ export type ScannedRoutes = {
     'clients.show_with_transactions': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'transactions.index': { paramsTuple?: []; params?: {} }
     'transactions.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'gateways.index': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
