@@ -123,7 +123,7 @@ Realiza uma compra criando um usuário, caso ele ainda não exista.
   "products": [
     {
       "id": "number",
-      "quantity": "20000" // Valor em centavos
+      "quantity": "number"
     }
   ],
   "cardNumber": "string",
@@ -365,7 +365,7 @@ status: 204 (No Content)
 
 ### Listar Clientes
 
-**GET** `/products`
+**GET** `/clients`
 
 Lista clientes
 
@@ -534,7 +534,7 @@ Lista gateways
 
 ### Atualizar Parcialmente um Gateway
 
-**PUT** `/gateways/:id`
+**** `/gateways/:id`
 
 Atualiza parcialmente um gateway
 
