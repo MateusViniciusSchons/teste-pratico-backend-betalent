@@ -566,5 +566,5 @@ docker compose exec app node ace test
 ```
 
 ## 📈 Extras
-- Adicionei unitPrice à tabela transactionProducts para salvar o preço unitário do produto no momento da compra, caso o produto mude de valor no futuro, mantendo dados para calcular possíveis estornos de apenas um produto ou consulta de mudança de preços, caso necessário.
+- Adicionei o campo unit_price à tabela transaction_products para salvar o preço unitário do produto no momento da compra, caso o produto mude de valor no futuro, mantendo dados para calcular possíveis estornos de apenas um produto ou consulta de mudança de preços, caso necessário;
 - Planejei uma refatoração no Transaction Model, mas não tive tempo de implementar.
