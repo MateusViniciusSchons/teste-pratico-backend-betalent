@@ -6,24 +6,9 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    env_file: 
+    - .env
     environment:
-      TZ: UTC
-      PORT: 3333
-      HOST: 0.0.0.0
-      NODE_ENV: development
-      LOG_LEVEL: info
-      APP_KEY: aVE76uUb715M_Dy35a6NHZow7f_o7WUt
-      APP_URL: http://localhost:3333
-      SESSION_DRIVER: cookie
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_DATABASE: payment_api
-      GATEWAY1_EMAIL: dev@betalent.tech
-      GATEWAY1_TOKEN: FEC9BB078BF338F464F96B48089EB498
-      GATEWAY2_TOKEN: tk_f2198cc671b5289fa856
-      GATEWAY2_SECRET: 3d15e8ed6131446ea7e3456728b1211f
       CHOKIDAR_USEPOLLING: "true"
       CHOKIDAR_INTERVAL: 500
     depends_on:
