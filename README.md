@@ -46,7 +46,12 @@ docker compose exec app npm install
 docker compose exec app node ace migration:run
 docker compose exec app node ace db:seed
 ```
-
+## Credenciais de Usuário
+```
+**ADMIN** 
+email: admin@betalent.com
+senha: mecontrara
+```
 ## 🚦 Rotas da API
 Todas as rotas possuem prefixo `/api/v1`
 ### 🔓 Públicas
@@ -112,7 +117,7 @@ Realiza uma compra criando um usuário, caso ele ainda não exista.
   "products": [
     {
       "id": "number",
-      "quantity": "20000" // Valor em centavos
+      "quantity": "number"
     }
   ],
   "cardNumber": "string",
@@ -141,7 +146,7 @@ Realiza uma compra criando um usuário, caso ele ainda não exista.
 ### Rotas Autenticadas
 ```markdown
 
-prescisam de header `"Authorization": "Bearer {token}"`
+precisam de header `"Authorization": "Bearer {token}"`
 ```
 
 ### Criar Usuário
@@ -354,7 +359,7 @@ status: 204 (No Content)
 
 ### Listar Clientes
 
-**GET** `/products`
+**GET** `/clients`
 
 Lista clientes
 
@@ -523,7 +528,7 @@ Lista gateways
 
 ### Atualizar Parcialmente um Gateway
 
-**PUT** `/gateways/:id`
+**PATCH** `/gateways/:id`
 
 Atualiza parcialmente um gateway
 
@@ -531,7 +536,7 @@ Atualiza parcialmente um gateway
 
 ```json
 {
-  "isActive"?: "string",
+  "isActive"?: "boolean",
   "priority"?: "number"
 }
 ```
@@ -555,5 +560,5 @@ Atualiza parcialmente um gateway
 Para executar a suíte de testes completa dentro do container Docker, utilize:
 
 ```bash
-docker-compose exec app node ace test
+docker compose exec app node ace test
 ```
