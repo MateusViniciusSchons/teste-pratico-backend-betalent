@@ -54,6 +54,7 @@ senha: mecontrara
 ```
 ## 🚦 Rotas da API
 Todas as rotas possuem prefixo `/api/v1`
+Criei uma collection do postman para testar as rotas mais facilmente. Ela pode ser encontrada na raiz do projeto (mateus_schons.postman_collection.json)
 ### 🔓 Públicas
 * **POST** `/auth/login` - Realizar o login e obter token de acesso.
 * **POST** `/transactions` - Realizar uma compra informando múltiplos produtos e dados do cartão.
