@@ -46,13 +46,7 @@ docker compose exec app npm install
 docker compose exec app node ace migration:run
 docker compose exec app node ace db:seed
 ```
-
-### 5. Rodar a Aplicação
-Execute os comandos abaixo para iniciar a aplicação:
-```bash
-docker compose exec app node ace serve
-```
-##### Credenciais de Usuário
+## Credenciais de Usuário
 ```
 **ADMIN** 
 email: admin@betalent.com
@@ -534,7 +528,7 @@ Lista gateways
 
 ### Atualizar Parcialmente um Gateway
 
-**** `/gateways/:id`
+**PATCH** `/gateways/:id`
 
 Atualiza parcialmente um gateway
 
@@ -566,5 +560,5 @@ Atualiza parcialmente um gateway
 Para executar a suíte de testes completa dentro do container Docker, utilize:
 
 ```bash
-docker-compose exec app node ace test
+docker compose exec app node ace test
 ```
