@@ -47,10 +47,6 @@ docker-compose exec app node ace migration:run
 docker-compose exec app node ace db:seed
 ```
 
-Aqui está o bloco de código Markdown contendo apenas a seção de rotas, estruturado para o Nível 3 do desafio:
-
-Markdown
-
 ## 🚦 Rotas da API
 Todas as rotas possuem prefixo `/api/v1`
 ### 🔓 Públicas
