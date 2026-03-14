@@ -16,7 +16,9 @@ export default class ClientsController {
         })
 
         const client = await Client.query().where('id', id).preload('transactions', (transactionsQuery) => {
-            transactionsQuery.preload('products')
+            transactionsQuery.preload('products', (productQuery) => {
+              productQuery.preload('product')
+            })
         }).firstOrFail()
 
         response.ok({ client })
