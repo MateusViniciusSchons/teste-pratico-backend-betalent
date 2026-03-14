@@ -20,7 +20,7 @@ Este projeto foi desenvolvido como parte do teste prático para a **BeTalent Tec
 
 ### 1. Clonar o Repositório
 ```bash
-git clone [[https://github.com/](https://github.com/)[seu-usuario]/[nome-do-repo].git](https://github.com/MateusViniciusSchons/teste-pratico-backend-betalent.git)
+git clone https://github.com/MateusViniciusSchons/teste-pratico-backend-betalent.git
 cd teste-pratico-backend-betalent
 ```
 
