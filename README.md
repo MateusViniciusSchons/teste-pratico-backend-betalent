@@ -146,7 +146,7 @@ Realiza uma compra criando um usuário, caso ele ainda não exista.
 ### Rotas Autenticadas
 ```markdown
 
-prescisam de header `"Authorization": "Bearer {token}"`
+precisam de header `"Authorization": "Bearer {token}"`
 ```
 
 ### Criar Usuário
@@ -536,7 +536,7 @@ Atualiza parcialmente um gateway
 
 ```json
 {
-  "isActive"?: "string",
+  "isActive"?: "boolean",
   "priority"?: "number"
 }
 ```
