@@ -54,6 +54,7 @@ senha: mecontrara
 ```
 ## 🚦 Rotas da API
 Todas as rotas possuem prefixo `/api/v1`
+Criei uma collection do postman para testar as rotas mais facilmente. Ela pode ser encontrada na raiz do projeto (mateus_schons.postman_collection.json)
 ### 🔓 Públicas
 * **POST** `/auth/login` - Realizar o login e obter token de acesso.
 * **POST** `/transactions` - Realizar uma compra informando múltiplos produtos e dados do cartão.
@@ -265,7 +266,7 @@ Cria um produto
 ```json
 {
   "name": "string",
-  "amount": "number",
+  "amount": "number"
 }
 ```
 
@@ -469,6 +470,7 @@ Detalha compra
         "productId": "number",
         "transactionId": "number",
         "quantity": "number",
+        "unitPrice": "number",
         "product": {
           "id": "number",
           "name": "string",
@@ -562,3 +564,7 @@ Para executar a suíte de testes completa dentro do container Docker, utilize:
 ```bash
 docker compose exec app node ace test
 ```
+
+## 📈 Extras
+- Adicionei o campo unit_price à tabela transaction_products para salvar o preço unitário do produto no momento da compra, caso o produto mude de valor no futuro, mantendo dados para calcular possíveis estornos de apenas um produto ou consulta de mudança de preços, caso necessário;
+- Planejei uma refatoração no Transaction Model, mas não tive tempo de implementar.
