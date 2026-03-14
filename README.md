@@ -47,6 +47,17 @@ docker compose exec app node ace migration:run
 docker compose exec app node ace db:seed
 ```
 
+### 5. Rodar a Aplicação
+Execute os comandos abaixo para iniciar a aplicação:
+```bash
+docker compose exec app node ace serve
+```
+##### Credenciais de Usuário
+```
+**ADMIN** 
+email: admin@betalent.com
+senha: mecontrara
+```
 ## 🚦 Rotas da API
 Todas as rotas possuem prefixo `/api/v1`
 ### 🔓 Públicas
