@@ -50,20 +50,21 @@ docker-compose exec app node ace db:seed
 ## 🚦 Rotas da API
 Todas as rotas possuem prefixo `/api/v1`
 ### 🔓 Públicas
-* **POST** `/login` - Realizar o login e obter token de acesso.
-* **POST** `/checkout` - Realizar uma compra informando múltiplos produtos e dados do cartão.
+* **POST** `/auth/login` - Realizar o login e obter token de acesso.
+* **POST** `/transactions` - Realizar uma compra informando múltiplos produtos e dados do cartão.
 
 ### 🔒 Privadas (Requer Autenticação)
 | Método | Rota | Descrição | Permissão (Roles) |
 | :--- | :--- | :--- | :--- |
+| **GET** | `/gateways` | Listar todos os gateways. | `ADMIN`, `USER` |
 | **PATCH** | `/gateways/:id` | Ativar/desativar ou alterar a prioridade de um gateway. | `ADMIN` |
-| **POST** | `/transactions/:id/refund` | Realizar o reembolso de uma compra junto ao gateway. | `FINANCE`, `ADMIN` |
-| **GET** | `/clients` | Listar todos os clientes. | `MANAGER`, `ADMIN` |
-| **GET** | `/clients/:id` | Detalhes de um cliente específico e suas compras. | `MANAGER`, `ADMIN` |
-| **GET** | `/transactions` | Listar todas as compras realizadas. | `USER`, `FINANCE`, `MANAGER`, `ADMIN` |
-| **GET** | `/transactions/:id` | Detalhes específicos de uma compra. | `USER`, `FINANCE`, `MANAGER`, `ADMIN` |
-| **CRUD** | `/products` | Gerenciamento completo de produtos (Criar, Listar, Editar, Excluir). | `MANAGER`, `ADMIN` |
-| **CRUD** | `/users` | Gerenciamento completo de usuários. | `ADMIN` |
+| **POST** | `/transactions/:id/chargeback` | Realizar o reembolso de uma compra junto ao gateway. | `ADMIN`, `FINANCE` |
+| **GET** | `/clients` | Listar todos os clientes. | `ADMIN`, `USER` |
+| **GET** | `/clients/:id/transactions` | Detalhes de um cliente específico e suas compras. | `ADMIN`, `USER` |
+| **GET** | `/transactions` | Listar todas as compras realizadas. | `ADMIN`, `USER` |
+| **GET** | `/transactions/:id` | Detalhes específicos de uma compra. | `ADMIN`, `USER`, |
+| **CRUD** | `/products` | Gerenciamento completo de produtos (Criar, Listar, Editar, Excluir). | `ADMIN`, `MANAGER`, `FINANCE` |
+| **CRUD** | `/users` | Gerenciamento completo de usuários. | `ADMIN`, `MANAGER` |
 
 ## 🛣️ Detalhamento das Rotas
 Com prefixo `/api/v1`.
