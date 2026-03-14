@@ -469,6 +469,7 @@ Detalha compra
         "productId": "number",
         "transactionId": "number",
         "quantity": "number",
+        "unitPrice": "number",
         "product": {
           "id": "number",
           "name": "string",
@@ -562,3 +563,7 @@ Para executar a suíte de testes completa dentro do container Docker, utilize:
 ```bash
 docker compose exec app node ace test
 ```
+
+## 📈 Extras
+- Adicionei unitPrice à tabela transactionProducts para salvar o preço unitário do produto no momento da compra, caso o produto mude de valor no futuro, mantendo dados para calcular possíveis estornos de apenas um produto ou consulta de mudança de preços, caso necessário.
+- Planejei uma refatoração no Transaction Model, mas não tive tempo de implementar.
