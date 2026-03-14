@@ -13,11 +13,14 @@ export default class TransactionsController {
     async create({ request, response }: HttpContext) {
         const { clientName, clientEmail, products, cardNumber, cvv } = await request.validateUsing(postTransactionValidator)
 
+        let productsWithPrice = []
+
         let totalAmount = 0
         for(const product of products) {
             const productDB = await Product.findByOrFail('id', product.id)
             if(productDB && !productDB.deleted) {
                 totalAmount += (productDB.amount * product.quantity)
+                productsWithPrice.push({ ...product, price: productDB.amount })
             } else {
                 return response.badRequest({ message: `Product with id ${product.id} not found or deleted` })
             }
@@ -43,10 +46,11 @@ export default class TransactionsController {
             clientId: client.id,
         })
 
-        const transactionProducts = await TransactionProduct.createMany(products.map((product: any) => ({
+        const transactionProducts = await TransactionProduct.createMany(productsWithPrice.map((product: any) => ({
             productId: product.id,
             quantity: product.quantity,
-            transactionId: transaction.id
+            transactionId: transaction.id,
+            unitPrice: product.price
         })))
 
         const gateways = await Gateway

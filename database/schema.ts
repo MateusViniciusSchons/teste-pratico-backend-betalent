@@ -82,7 +82,7 @@ export class ProductSchema extends BaseModel {
 }
 
 export class TransactionProductSchema extends BaseModel {
-  static $columns = ['createdAt', 'id', 'productId', 'quantity', 'transactionId', 'updatedAt'] as const
+  static $columns = ['createdAt', 'id', 'productId', 'quantity', 'transactionId', 'unitPrice', 'updatedAt'] as const
   $columns = TransactionProductSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
@@ -94,6 +94,8 @@ export class TransactionProductSchema extends BaseModel {
   declare quantity: number
   @column()
   declare transactionId: number
+  @column()
+  declare unitPrice: number | null
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }

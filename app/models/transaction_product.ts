@@ -23,6 +23,9 @@ export default class TransactionProduct extends BaseModel {
     @belongsTo(() => Transaction)
     declare transaction: BelongsTo<typeof Transaction>
 
+    @column()
+    declare unitPrice: number
+
     @column.dateTime({ autoCreate: true })
     declare createdAt: DateTime
 
