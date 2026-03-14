@@ -33,18 +33,18 @@ cp .env.example .env
 ### 3. Subir Containers
 Este comando iniciará quatro containers: a API Adonis, o MySQL e os dois Mocks de Gateway:
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### 4. Instalar Dependências e Preparar o Banco
 Execute os comandos abaixo para instalar os pacotes, rodar as migrations e os seeders (para popular usuários e gateways iniciais):
 ```bash
 # Instalar dependências
-docker-compose exec app npm install
+docker compose exec app npm install
 
 # Rodar Migrations e Seeds
-docker-compose exec app node ace migration:run
-docker-compose exec app node ace db:seed
+docker compose exec app node ace migration:run
+docker compose exec app node ace db:seed
 ```
 
 ## 🚦 Rotas da API
