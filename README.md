@@ -265,7 +265,7 @@ Cria um produto
 ```json
 {
   "name": "string",
-  "amount": "number",
+  "amount": "number"
 }
 ```
 
