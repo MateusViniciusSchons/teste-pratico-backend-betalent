@@ -273,7 +273,7 @@ Cria um produto
 {
   "product": {
     "id": "number",
-    "email": "string",
+    "name": "string",
     "amount": "number"
   }
 }
@@ -281,27 +281,276 @@ Cria um produto
 
 ### Listar Produtos
 
+**GET** `/products`
+
+Lista produtos
+
+#### Response
+
+```json
+{
+  "products": [
+  {
+    "id": "number",
+    "name": "string",
+    "amount": "number"
+  }]
+}
+```
+
 ### Detalhar Produto
+
+**GET** `/products/:id`
+
+Detalha produto
+
+#### Response
+
+```json
+{
+  "product": {
+    "id": "number",
+    "name": "string",
+    "amount": "number"
+  }
+}
+```
 
 ### Atualizar Produto
 
+**PUT** `/products/:id`
+
+Atualiza um produto
+
+#### Body
+
+```json
+{
+  "name": "string",
+  "amount": "number"
+}
+```
+
+#### Response
+
+```json
+{
+  "product": {
+    "id": "number",
+    "name": "string",
+    "amount": "number"
+  }
+}
+```
+
 ### Deletar Produto
+
+**DELETE** `/products/:id`
+
+Deleta produto
+
+#### Response
+
+```json
+status: 204 (No Content)
+```
 
 ### Listar Clientes
 
+**GET** `/products`
+
+Lista clientes
+
+#### Response
+
+```json
+{
+  "clients": [
+  {
+    "id": "number",
+    "name": "string",
+    "email": "string"
+  }]
+}
+```
+
 ### Detalhar Cliente E Suas Compras
+
+**GET** `/clients/:id/transactions`
+
+Detalha compras de um cliente
+
+#### Response
+
+```json
+{
+  "client": {
+    "id": "number",
+    "name": "string",
+    "email": "string"
+    "transactions": [{
+      "id": "number",
+      "amount": "number",
+      "cardLastNumbers": "string",
+      "clientId": "number",
+      "externalId": "string",
+      "gatewayId": "number",
+      "status": "string",
+      "products": [{
+        "id": "number",
+        "productId": "number",
+        "transactionId": "number",
+        "quantity": "number",
+        "product": {
+          "id": "number",
+          "name": "string",
+          "amount": "number",
+          "deleted": "boolean",
+        }
+      }]
+    }]
+  }
+}
+```
 
 ### Listar Compras
 
+**GET** `/transactions`
+
+Lista compras
+
+#### Response
+
+```json
+{
+  "transactions": [{
+      "id": "number",
+      "amount": "number",
+      "cardLastNumbers": "string",
+      "clientId": "number",
+      "externalId": "string",
+      "gatewayId": "number",
+      "status": "string",
+      "client": {
+        "id": "number",
+        "name": "string",
+      },
+
+  }]
+}
+```
+
 ### Detalhar uma Compra
+
+**GET** `/transactions/:id`
+
+Detalha compra
+
+#### Response
+
+```json
+{
+  "transaction": {
+      "id": "number",
+      "amount": "number",
+      "cardLastNumbers": "string",
+      "clientId": "number",
+      "externalId": "string",
+      "gatewayId": "number",
+      "status": "string",
+      "client": {
+        "id": "number",
+        "name": "string"
+      },
+      "products": [{
+        "id": "number",
+        "productId": "number",
+        "transactionId": "number",
+        "quantity": "number",
+        "product": {
+          "id": "number",
+          "name": "string",
+          "amount": "number",
+        }
+      }]
+}
+```
 
 ### Estornar uma Compra
 
+**POST** `/transactions/:id/chargeback`
+
+Estorna uma compra
+
+#### Response
+
+```json
+{
+  "message": "string",
+  "transaction": {
+    "id": "number",
+    "amount": "number",
+    "cardLastNumbers": "string",
+    "clientId": "number",
+    "externalId": "string",
+    "gatewayId": "number",
+    "status": "string",
+    "gateway": {
+      "id": "number",
+      "name": "string",
+      "isActive": "boolean",
+      "priority": "number"
+    }
+  }
+}
+```
+
 ### Listar Gateways
+
+**GET** `/gateways`
+
+Lista gateways
+
+#### Response
+
+```json
+{
+  "gateways": [{
+       "id": "number",
+      "name": "string",
+      "isActive": "boolean",
+      "priority": "number"
+  }]
+}
+```
 
 ### Atualizar Parcialmente um Gateway
 
+**PUT** `/gateways/:id`
 
+Atualiza parcialmente um gateway
+
+#### Body
+
+```json
+{
+  "isActive"?: "string",
+  "priority"?: "number"
+}
+```
+
+#### Response
+
+```json
+{
+  "gateway": {
+    "id": "number",
+    "name": "string",
+    "isActive": "boolean",
+    "priority": "number"
+  }
+}
+```
 
 ## 🧪 Testes Automatizados (TDD)
 
